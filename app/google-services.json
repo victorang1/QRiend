@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "214732687756",
+    "firebase_url": "https://qfriend-39692.firebaseio.com",
+    "project_id": "qfriend-39692",
+    "storage_bucket": "qfriend-39692.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214732687756:android:1c4e4f8be675ff46",
+        "android_client_info": {
+          "package_name": "com.example.victor_pc.qriend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214732687756-4hgf0fqet5rdf2o24cpv1osddk9sg4qa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.victor_pc.qriend",
+            "certificate_hash": "6dda3a01b0baff9242b0afcc9943b6afc0716515"
+          }
+        },
+        {
+          "client_id": "214732687756-1ri3iei1kp9pth2icdntbl3n3p991vl1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBxcT_vye7pxr803zuDccL6NPsm4RlUSw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214732687756-1ri3iei1kp9pth2icdntbl3n3p991vl1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">QRiend</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="username">USERNAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="newUser_signUp">New user? Sign Up</string>
+    <string name="existingUser_SignIn">Existing user? Sign In</string>
+    <string name="show_QR">Show QR</string>
+    <string name="scan_QR">Scan QR</string>
+    <string name="friend_verification_text">Are you sure want to add %s?</string>
+    <string name="user_QR_code">This is your QR code</string>
+</resources>

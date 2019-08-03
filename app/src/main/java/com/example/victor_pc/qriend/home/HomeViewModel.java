@@ -1,14 +1,11 @@
 package com.example.victor_pc.qriend.home;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.provider.ContactsContract;
-import android.util.Log;
 
 import com.example.victor_pc.qriend.common.APIManager;
 import com.example.victor_pc.qriend.model.Friend;
-import com.example.victor_pc.qriend.model.User;
+import com.example.victor_pc.qriend.model.Session;
 import com.example.victor_pc.qriend.repository.UserRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,6 +40,7 @@ public class HomeViewModel extends ViewModel {
                     Friend friend = item.getValue(Friend.class);
                     list.add(friend);
                 }
+                Session.friendList = list;
                 result.postValue(list);
             }
 

@@ -1,27 +1,17 @@
 package com.example.victor_pc.qriend.verification;
 
 import android.arch.lifecycle.Observer;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.victor_pc.qriend.R;
 import com.example.victor_pc.qriend.common.BaseActivity;
 import com.example.victor_pc.qriend.common.QRCodeGenerator;
 import com.example.victor_pc.qriend.databinding.ActivityVerificationBinding;
 import com.example.victor_pc.qriend.home.HomeActivity;
-import com.example.victor_pc.qriend.model.Friend;
 import com.example.victor_pc.qriend.model.User;
 import com.example.victor_pc.qriend.scanqr.ScanQRActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class VerificationActivity extends BaseActivity<ActivityVerificationBinding, VerificationViewModel> implements View.OnClickListener{
 
@@ -42,32 +32,18 @@ public class VerificationActivity extends BaseActivity<ActivityVerificationBindi
     @Override
     public void onClick(View v) {
         if(v == getBinding().llAccept) {
-            getViewModel().checkDuplicateFriend(getIntent().getExtras()).observe(this, new Observer<Boolean>() {
-                @Override
-                public void onChanged(@Nullable Boolean aBoolean) {
-                    
+            if(!getViewModel().checkDuplicateFriend(getIntent().getExtras())) {
+                if(getViewModel().insertFriend(getIntent().getExtras())) {
+                    showMessage("Friend has been added to the friendlist");
+                    gotoActivity(HomeActivity.class, true);
                 }
-            });
+            } else {
+                showMessage("You cannot add this friend");
+                gotoActivity(HomeActivity.class, true);
+            }
         } else if(v == getBinding().llCancel) {
             gotoActivity(ScanQRActivity.class, true);
         }
-    }
-
-    private void toastMessage(String msg, final Class to) {
-        disableButton();
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                gotoActivity(to, true);
-            }
-        }, 2000);
-    }
-
-    private void disableButton() {
-        getBinding().llAccept.setEnabled(false);
-        getBinding().llCancel.setEnabled(false);
     }
 
     private void initListener() {
@@ -79,9 +55,29 @@ public class VerificationActivity extends BaseActivity<ActivityVerificationBindi
         getViewModel().getQRCode(getViewModel().getResult(getIntent().getExtras())).observe(this, new Observer<User>() {
             @Override
             public void onChanged(@Nullable User user) {
-                getBinding().setViewModel(user);
-                getBinding().qrCode.setImageBitmap(qrCodeGenerator.qrgEncoder(user.getQr_code()));
+                if(getViewModel().getEventId() == User.NO_DATA) {
+                    showLoadingProgress();
+                }
+                else if(getViewModel().getEventId() == User.SIMILAR_DATA) {
+                    showMessage("You cannot add yourself");
+                    gotoActivity(HomeActivity.class, true);
+                }
+                else if(getViewModel().getEventId() == User.SHOW_DATA) {
+                    stopLoadingProgress();
+                    getBinding().setViewModel(user);
+                    getBinding().qrCode.setImageBitmap(qrCodeGenerator.qrgEncoder(user.getQr_code()));
+                }
             }
         });
+    }
+
+    private void showLoadingProgress() {
+        getBinding().progressLoading.setVisibility(View.VISIBLE);
+        getBinding().rlContent.setVisibility(View.GONE);
+    }
+
+    private void stopLoadingProgress() {
+        getBinding().progressLoading.setVisibility(View.GONE);
+        getBinding().rlContent.setVisibility(View.VISIBLE);
     }
 }

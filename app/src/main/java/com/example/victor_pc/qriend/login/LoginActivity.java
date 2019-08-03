@@ -3,9 +3,7 @@ package com.example.victor_pc.qriend.login;
 import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.victor_pc.qriend.R;
 import com.example.victor_pc.qriend.common.BaseActivity;
@@ -42,7 +40,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
                     if(aBoolean) {
                         gotoActivity(HomeActivity.class, true);
                     } else {
-                        showMessage("Incorrect email and password");
+                        showMessage("Incorrect email or password");
                     }
                 }
             });

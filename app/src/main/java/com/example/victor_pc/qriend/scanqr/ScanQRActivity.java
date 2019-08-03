@@ -1,7 +1,6 @@
 package com.example.victor_pc.qriend.scanqr;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.victor_pc.qriend.R;
 import com.example.victor_pc.qriend.common.BaseActivity;
@@ -29,7 +28,12 @@ public class ScanQRActivity extends BaseActivity<ActivityScanQrBinding, ScanQRVi
         mScannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
             @Override
             public void handleResult(Result result) {
-                gotoActivity(VerificationActivity.class, true, result.getText());
+                if(getViewModel().checkResult(result)) {
+                    gotoActivity(VerificationActivity.class, true, result.getText());
+                } else {
+                    showMessage("This QR Code is not from our application");
+                    gotoActivity(HomeActivity.class, true);
+                }
             }
         });
     }

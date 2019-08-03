@@ -2,25 +2,15 @@ package com.example.victor_pc.qriend.register;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.victor_pc.qriend.common.APIManager;
 import com.example.victor_pc.qriend.common.QRCodeGenerator;
-import com.example.victor_pc.qriend.model.Session;
 import com.example.victor_pc.qriend.model.User;
 import com.example.victor_pc.qriend.repository.UserRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.zxing.WriterException;
-
-import java.io.IOException;
 
 public class RegisterViewModel extends ViewModel {
 
@@ -75,5 +65,12 @@ public class RegisterViewModel extends ViewModel {
             }
         });
         return result;
+    }
+
+    public boolean checkUsernameLength(User user) {
+        if(user.getUsername().length() >= 12) {
+            return false;
+        }
+        return true;
     }
 }

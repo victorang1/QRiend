@@ -12,6 +12,4 @@
     <dimen name="common_dp_6">6dp</dimen>
     <dimen name="common_dp_4">4dp</dimen>
     <dimen name="common_dp_2">2dp</dimen>
-    <dimen name="separator_size">1dp</dimen>
-    <dimen name="common_radius">10dp</dimen>
 </resources>

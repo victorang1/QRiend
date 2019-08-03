@@ -3,7 +3,6 @@ package com.example.victor_pc.qriend.showqr;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.graphics.Bitmap;
-import android.util.Base64;
 
 import com.example.victor_pc.qriend.common.APIManager;
 import com.example.victor_pc.qriend.common.QRCodeGenerator;

@@ -1,9 +1,7 @@
 package com.example.victor_pc.qriend.login;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.util.Log;
 
 import com.example.victor_pc.qriend.common.APIManager;
 import com.example.victor_pc.qriend.model.Session;
@@ -11,9 +9,6 @@ import com.example.victor_pc.qriend.model.User;
 import com.example.victor_pc.qriend.repository.UserRepository;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class LoginViewModel extends ViewModel {
 
